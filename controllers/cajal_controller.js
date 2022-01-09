@@ -14,6 +14,7 @@ class CajalController extends Controller {
     const keywords = localStorage.getItem('keywords') || (await new World().words(this.cellNum())).join(',')
     this.paperTarget.value = keywords
     this.save()
+    this.call()
   }
 
   async shuffle () {
