@@ -17,7 +17,7 @@ class CajalController extends Controller {
     this.call()
   }
 
-  async shuffle () {
+  async reset () {
     this.paperTarget.value = (await new World().words(this.cellNum())).join(',')
     this.save()
   }
