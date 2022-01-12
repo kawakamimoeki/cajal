@@ -45,7 +45,7 @@ class CajalController extends Controller {
 
   async share () {
     await navigator.clipboard.writeText(`${location.href}?keywords=${encodeURI(this.paperTarget.value)}`)
-    alert('Shareable URL is copied on clipboard 🧙‍♀️')
+    alert('Your shareable URL is copied on clipboard 🧙‍♀️')
   }
 
   call () {
