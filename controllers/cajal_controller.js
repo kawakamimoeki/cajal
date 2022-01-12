@@ -1,3 +1,4 @@
+import tippy from 'tippy.js'
 import { Controller } from 'stimulus'
 import { Paper } from '../lib/paper'
 import { Brain } from '../lib/brain'
@@ -26,6 +27,13 @@ class CajalController extends Controller {
   }
 
   async connect () {
+    if (!this.myKeywords()) {
+      tippy(this.paperTarget, {
+        content: 'キーワードを書いてみよう👩‍🎨',
+        triggerTarget: this.brainTarget,
+        trigger: 'click'
+      })
+    }
     const keywords = this.sharedKeywords() || this.myKeywords() || this.defaultKeywords()
     this.paperTarget.value = keywords
     this.save()
@@ -45,7 +53,7 @@ class CajalController extends Controller {
 
   async share () {
     await navigator.clipboard.writeText(`${location.href}?keywords=${encodeURI(this.paperTarget.value)}`)
-    alert('Your shareable URL is copied on clipboard 🧙‍♀️')
+    alert('キーワードをシェアできるURLをクリップボードにコピーしました 🧙‍♀️')
   }
 
   call () {
