@@ -10,15 +10,20 @@ class CajalController extends Controller {
     return 20
   }
 
+  defaultKeywords () {
+    // return (await new World().words(this.cellNum())).join(',')
+    '保険,いぬ,テトリス,電子レンジ,救急車,衛星,小説,パン,ジャングルジム,ボクシング'
+  }
+
   async connect () {
-    const keywords = localStorage.getItem('keywords') || (await new World().words(this.cellNum())).join(',')
+    const keywords = localStorage.getItem('keywords') || this.defaultKeywords()
     this.paperTarget.value = keywords
     this.save()
     this.call()
   }
 
   async reset () {
-    this.paperTarget.value = (await new World().words(this.cellNum())).join(',')
+    this.paperTarget.value = this.defaultKeywords()
     this.save()
   }
 
