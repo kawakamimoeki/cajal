@@ -7,7 +7,7 @@ class CajalController extends Controller {
   static targets = ['paper', 'brain']
 
   cellNum () {
-    return 100
+    return 20
   }
 
   async connect () {
