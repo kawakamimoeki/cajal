@@ -12,7 +12,7 @@ class CajalController extends Controller {
 
   defaultKeywords () {
     // return (await new World().words(this.cellNum())).join(',')
-    '保険,いぬ,テトリス,電子レンジ,救急車,衛星,小説,パン,ジャングルジム,ボクシング'
+    return '保険,いぬ,テトリス,電子レンジ,救急車,衛星,小説,パン,ジャングルジム,ボクシング'
   }
 
   async connect () {
