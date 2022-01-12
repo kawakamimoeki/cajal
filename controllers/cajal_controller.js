@@ -15,8 +15,18 @@ class CajalController extends Controller {
     return '保険,いぬ,テトリス,電子レンジ,救急車,衛星,小説,パン,ジャングルジム,ボクシング'
   }
 
+  sharedKeywords () {
+    const string = location.search
+    const params = new URLSearchParams(string)
+    return params.get("keywords")
+  }
+
+  myKeywords () {
+    return localStorage.getItem('keywords')
+  }
+
   async connect () {
-    const keywords = localStorage.getItem('keywords') || this.defaultKeywords()
+    const keywords = this.sharedKeywords() || this.myKeywords() || this.defaultKeywords()
     this.paperTarget.value = keywords
     this.save()
     this.call()
@@ -28,7 +38,14 @@ class CajalController extends Controller {
   }
 
   save () {
-    localStorage.setItem('keywords', this.paperTarget.value)
+    if (!this.sharedKeywords()) {
+      localStorage.setItem('keywords', this.paperTarget.value)
+    }
+  }
+
+  async share () {
+    await navigator.clipboard.writeText(`${location.href}?keywords=${encodeURI(this.paperTarget.value)}`)
+    alert('Shareable URL is copied on clipboard 🧙‍♀️')
   }
 
   call () {
